@@ -17,18 +17,12 @@ namespace Program
             RunServer();
 
         }
-        private static void ColoredConsoleOutput(string message, ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-            Console.WriteLine(message);
-            Console.ResetColor();
-        }
+        
         private static void RunServer()
         {
             socketForClient = tcpListener.AcceptSocket();
             networkStream = new NetworkStream(socketForClient);
             streamReader = new StreamReader(networkStream);
-
             try
             {
                 string line;
@@ -52,7 +46,6 @@ namespace Program
                         tcpListener.Stop();
                         Environment.Exit(0);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -67,5 +60,13 @@ namespace Program
                 tcpListener.Stop();
             }
         }
+        #region metody dodatkowe
+        private static void ColoredConsoleOutput(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+        #endregion
     }
 }
